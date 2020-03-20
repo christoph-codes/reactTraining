@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import UserInput from '../userinput/UserInput';
 import UserOutput from '../useroutput/UserOutput';
 
-export default function FirstAssignment() {
+export default function AssignmentOne() {
   const [username, setUsername] = useState("Christopher");
 
   const handleUsername = e => {
@@ -11,8 +11,8 @@ export default function FirstAssignment() {
   };
   
   return (
-    <div className="FirstAssignment">
-      <h1>{username}</h1>
+    <div className="AssignmentOne">
+      <h1 className="page-header">Assignment #1</h1>
       <UserInput name={username} onChange={handleUsername} />
       <UserOutput name={username} />
       <UserOutput name={username} />

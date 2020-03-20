@@ -1,16 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.scss";
-import FirstAssignment from "../firstassignment/FirstAssignment";
+import Home from "../home/Home";
+import AssignmentOne from "../assignmentOne/AssignmentOne";
+import AppNavigation from "../appNavigation/AppNavigation";
 
 export default function App() {
   return (
     <Router>
       <div className="App">
-        <Link to="/first-assignment">First Assignment</Link>
+        <AppNavigation/>
+        <div className="page-content">
         <Switch>
-          <Route exact path="/first-assignment" component={FirstAssignment} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/assignment1" component={AssignmentOne} />
         </Switch>
+        </div>
       </div>
     </Router>
   );
