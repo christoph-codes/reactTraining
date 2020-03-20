@@ -6,9 +6,9 @@ export default function UserInput(props) {
         backgroundColor: "lightblue",
         border: "darkblue",
         padding: "10px 5px",
-        "font-size": "50px",
-        "font-weight": "lighter",
-        "text-align": "center",
+        fontSize: "50px",
+        fontWeight: "lighter",
+        textAlign: "center",
     }
     return (
       <input type="text" style={inputStyle} onChange={props.onChange} value={props.name} />

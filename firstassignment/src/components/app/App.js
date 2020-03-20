@@ -1,22 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import "./App.scss";
-import UserInput from '../userinput/UserInput';
-import UserOutput from '../useroutput/UserOutput';
+import FirstAssignment from "../firstassignment/FirstAssignment";
 
 export default function App() {
-  const [username, setUsername] = useState("Christopher");
-
-  const handleUsername = e => {
-    // console.log(e.target.value)
-    setUsername(e.target.value);
-  };
-  
   return (
-    <div className="App">
-      <h1>{username}</h1>
-      <UserInput name={username} onChange={handleUsername} />
-      <UserOutput name={username} />
-      <UserOutput name={username} />
-    </div>
+    <Router>
+      <div className="App">
+        <Link to="/first-assignment">First Assignment</Link>
+        <Switch>
+          <Route exact path="/first-assignment" component={FirstAssignment} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
