@@ -3,21 +3,22 @@ import "./ValidationComp.scss";
 
 export default function ValidationComp(props) {
   let charMessage = null;
-  if (props.length >= 50) {
+  const charMinimum = 20
+  if (props.length >= charMinimum) {
     charMessage = {
-      message: "Text Long Enough",
+      message: "Great Job!",
       class: "green"
     };
   } else {
     charMessage = {
-      message: "Text Too Short",
+      message: "Text Too Short, Keep typing!",
       class: "red"
     };
   }
   return (
     <div className="ValidationComp">
       <p>
-        Character Count: <span className={charMessage.class}>{charMessage.message}</span>
+        Character Count Must Be Over {charMinimum}: <span className={charMessage.class}>{charMessage.message}</span>
       </p>
     </div>
   );
