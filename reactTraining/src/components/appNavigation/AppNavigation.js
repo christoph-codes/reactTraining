@@ -7,7 +7,8 @@ export default function AppNavigation() {
         <div className="AppNavigation">
             <ul>
                 <li><NavLink exact to="/">Home</NavLink></li>
-                <li><NavLink exact to="/assignment1">First Assignment</NavLink></li>
+                <li><NavLink exact to="/assignment1">Assignment #1</NavLink></li>
+                <li><NavLink exact to="/assignment2">Assignment #2</NavLink></li>
             </ul>
         </div>
     )

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import UserInput from '../userinput/UserInput';
-import UserOutput from '../useroutput/UserOutput';
+import UserInput from './userinput/UserInput';
+import UserOutput from './useroutput/UserOutput';
 
 export default function AssignmentOne() {
   const [username, setUsername] = useState("Christopher");
