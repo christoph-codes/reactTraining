@@ -1,0 +1,13 @@
+.ValidationComp {
+  p {
+    span {
+      font-weight: bold;
+      &.red {
+        color: red;
+      }
+      &.green {
+          color: green;
+        }
+    }
+  }
+}
