@@ -21,6 +21,17 @@
     border-radius: 25%;
     font-size: 20px;
     line-height: 10px;
+    &.disabled {
+      background: #aaa;
+      cursor: auto;
+    }
+    &:disabled,&[disabled] {
+      background: #eee;
+      color: #ccc;
+      &:hover {
+        background: #eee;
+      }
+    }
     &:hover {
       background: #777;
     }

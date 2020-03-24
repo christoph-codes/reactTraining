@@ -24,7 +24,9 @@ export default function BurgerBuilder() {
             meat: 0,
             price: 4
     });
-    const [totalPrice, setTotalPrice] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(ingredients.price);
+    const [feedback, setFeedback] = useState('');
+    const [purchaseable, setPurchaseable] = useState(false);
 
     const addIngredient = type => {
         const oldCount = ingredients[type];
@@ -40,12 +42,44 @@ export default function BurgerBuilder() {
         setIngredients(updatedIngredients);
     }
     const removeIngredient = type => {
-
+        const oldCount = ingredients[type];
+        let updatedCount;
+        if(oldCount > 0) {
+            updatedCount = oldCount - 1;
+        
+        const updatedIngredients = {
+            ...ingredients
+        }
+        updatedIngredients[type] = updatedCount;
+        const priceReduction = INGREDIENT_PRICES[type];
+        const oldPrice = totalPrice;
+        const newPrice = oldPrice - priceReduction;
+        setTotalPrice(newPrice);
+        setIngredients(updatedIngredients);
+        } else {
+            setFeedback(`There are no pieces of ${type} on your burger!`);
+        }
     }
+    const disabledInfo = {
+        ...ingredients
+    }
+    for (let key in disabledInfo) {
+        disabledInfo[key] = disabledInfo[key] <= 0
+    }
+
+    console.log(ingredients.length);
+
     return (
         <div className="BurgerBuilder">
             <Burger ingredients={ingredients}/>
-            <BuildControls ingredientAdded={addIngredient} ingredientRemoved={removeIngredient}/>
+            <h2 className="burger-price">Total Price: <sup>$</sup>{totalPrice.toFixed(2)}</h2>
+            <BuildControls 
+                ingredientAdded={addIngredient} 
+                ingredientRemoved={removeIngredient} 
+                disabled={disabledInfo}
+            />
+            <button disabled={!purchaseable} className="btn order-now">Order Now</button>
+            {feedback ? <p>{feedback}</p> : null}
         </div>
     )
 }
