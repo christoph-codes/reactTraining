@@ -15,7 +15,7 @@ export default function Burger(props) {
 
     console.log(transformedIngredients.length);
 
-    if (transformedIngredients.length === 0) {
+    if (transformedIngredients.length <= 4) {
         transformedIngredients = <p>Please Start Adding Ingredients!</p>
     }
     

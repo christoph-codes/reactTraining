@@ -15,19 +15,18 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-	"New File": {
-		"scope": "Javascript React",
-		"prefix": "new",
+	"New Component": {
+		"prefix": "comp",
 		"body": [
 			"import React from 'react';",
 			"import './${1:label}.scss'",
-
-			"export default function ${1:label}(props) {",
-				"return (",
-				"<div className='${1:label}'>",
-						
-				"</div>",
-				")",
+			"",
+			"export default function $1(props) {",
+				"\treturn (",
+				"\t\t<div className='${1:label}'>",
+						"\t\t\t",
+				"\t\t</div>",
+				"\t)",
 			"}"
 		],
 		"description": "Creates new React File"

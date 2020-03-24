@@ -1,0 +1,28 @@
+.BuildControl {
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+  width: 25%;
+  .label {
+    width: 100%;
+    display: inline-block;
+    font-weight: lighter;
+    font-size: 24px;
+    margin: 0 0 5px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 15px;
+    margin: 0 5px;
+    background: #555;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 25%;
+    font-size: 20px;
+    line-height: 10px;
+    &:hover {
+      background: #777;
+    }
+  }
+}
