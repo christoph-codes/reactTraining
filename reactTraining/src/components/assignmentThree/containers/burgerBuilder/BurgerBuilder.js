@@ -7,22 +7,21 @@ import Burger from '../../burger/Burger';
 const INGREDIENT_PRICES = {
     lettuce: 0.1,
     cheese: 0.5,
-    bacon: 3,
+    onions: 0.5,
+    pickles: 0.2,
+    tomatos: 0.2,
     meat: 5,
 }
 
 export default function BurgerBuilder() {
     const [ingredients, setIngredients] = useState({
-            // lettuce: 1,
-            // bacon: 1,
-            // cheese: 2,
-            // meat: 2,
-            // price: "39.99"
             lettuce: 0,
-            bacon: 0,
+            onions: 0,
+            pickles: 0,
+            tomatos: 0,
             cheese: 0,
             meat: 0,
-            price: 4
+            price: 2
     });
     const [totalPrice, setTotalPrice] = useState(ingredients.price);
     const [feedback, setFeedback] = useState('');

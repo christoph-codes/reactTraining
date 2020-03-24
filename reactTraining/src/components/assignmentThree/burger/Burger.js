@@ -4,6 +4,7 @@ import './Burger.scss';
 import BurgerIngredient from '../burgerIngredient/BurgerIngredient';
 
 export default function Burger(props) {
+    let emptyIngredientMessage;
     let transformedIngredients = Object.keys(props.ingredients)
     .map(ingKey => {
         return [...Array(props.ingredients[ingKey])].map((_, i) => {
@@ -16,7 +17,7 @@ export default function Burger(props) {
     // console.log(transformedIngredients.length);
 
     if (transformedIngredients.length <= 4) {
-        transformedIngredients = <p>Please Start Adding Ingredients!</p>
+        emptyIngredientMessage = "What would you like on your burger today?"
     }
     
     return (
@@ -24,6 +25,7 @@ export default function Burger(props) {
             <BurgerIngredient type="bread-top"/>
             {transformedIngredients}
             <BurgerIngredient type="bread-bottom"/>
+            {emptyIngredientMessage ? <p>{emptyIngredientMessage}</p>: null}
         </div>
     )
 }
