@@ -21,11 +21,20 @@ export default function BurgerBuilder() {
             tomatos: 0,
             cheese: 0,
             meat: 0,
-            price: 2
     });
-    const [totalPrice, setTotalPrice] = useState(ingredients.price);
+    const [totalPrice, setTotalPrice] = useState(2);
     const [feedback, setFeedback] = useState('');
     const [purchaseable, setPurchaseable] = useState(false);
+
+    const updatePurchaseable = (ingredients) => {
+        const sum = Object.keys(ingredients).map(igKey => {
+            return ingredients[igKey];
+        })
+        .reduce((sum, el) => {
+            return sum + el;
+        }, 0);
+        setPurchaseable(sum >= 1);
+    }
 
     const addIngredient = type => {
         const oldCount = ingredients[type];
@@ -39,6 +48,7 @@ export default function BurgerBuilder() {
         const newPrice = oldPrice + priceAddition;
         setTotalPrice(newPrice);
         setIngredients(updatedIngredients);
+        updatePurchaseable(updatedIngredients);
     }
     const removeIngredient = type => {
         const oldCount = ingredients[type];
@@ -55,6 +65,7 @@ export default function BurgerBuilder() {
         const newPrice = oldPrice - priceReduction;
         setTotalPrice(newPrice);
         setIngredients(updatedIngredients);
+        updatePurchaseable(updatedIngredients);
         } else {
             setFeedback(`There are no pieces of ${type} on your burger!`);
         }
@@ -65,9 +76,7 @@ export default function BurgerBuilder() {
     for (let key in disabledInfo) {
         disabledInfo[key] = disabledInfo[key] <= 0
     }
-
-    console.log(ingredients.length);
-
+    console.log(purchaseable);
     return (
         <div className="BurgerBuilder">
             <Burger ingredients={ingredients}/>
@@ -77,7 +86,7 @@ export default function BurgerBuilder() {
                 ingredientRemoved={removeIngredient} 
                 disabled={disabledInfo}
             />
-            <button disabled={!purchaseable} className="btn order-now">Order Now</button>
+            <button disabled={!purchaseable} className="order-now btn">Order Now</button>
             {feedback ? <p>{feedback}</p> : null}
         </div>
     )
