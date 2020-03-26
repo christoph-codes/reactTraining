@@ -1,12 +1,15 @@
 .BurgerBuilder {
-    .order-now.btn {
+    .order-now {
         background: #2AFD94;
-        border: none;
-        border-radius: 10px;
-        font-size: 20px;
         color: white;
         width: 100%;
         max-width: 250px;
         padding:20px 0;
+        cursor: pointer;
+        &:disabled,&[disabled] {
+            background: #eee;
+            color: #ccc;
+            cursor: auto;
+        }
     }
 }

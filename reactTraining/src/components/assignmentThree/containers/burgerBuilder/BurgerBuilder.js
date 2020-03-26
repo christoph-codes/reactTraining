@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './BurgerBuilder.scss';
 import BuildControls from '../../buildControls/BuildControls';
+import Modal from '../../UI/modal/Modal';
 
 import Burger from '../../burger/Burger';
+import OrderSummary from '../../orderSummary/OrderSummary';
 
 const INGREDIENT_PRICES = {
     lettuce: 0.1,
@@ -25,6 +27,12 @@ export default function BurgerBuilder() {
     const [totalPrice, setTotalPrice] = useState(2);
     const [feedback, setFeedback] = useState('');
     const [purchaseable, setPurchaseable] = useState(false);
+    const [modalStatus, setModalStatus] = useState(false);
+
+    const toggleModal = () => {
+        setModalStatus(!modalStatus);
+    }
+
 
     const updatePurchaseable = (ingredients) => {
         const sum = Object.keys(ingredients).map(igKey => {
@@ -76,9 +84,15 @@ export default function BurgerBuilder() {
     for (let key in disabledInfo) {
         disabledInfo[key] = disabledInfo[key] <= 0
     }
-    console.log(purchaseable);
+
     return (
         <div className="BurgerBuilder">
+            {modalStatus &&
+            <Modal close={toggleModal}>
+                <OrderSummary close={toggleModal} price={totalPrice.toFixed(2)} ingredients={ingredients}/>
+            </Modal>
+            }
+            
             <Burger ingredients={ingredients}/>
             <h2 className="burger-price">Total Price: <sup>$</sup>{totalPrice.toFixed(2)}</h2>
             <BuildControls 
@@ -86,7 +100,7 @@ export default function BurgerBuilder() {
                 ingredientRemoved={removeIngredient} 
                 disabled={disabledInfo}
             />
-            <button disabled={!purchaseable} className="order-now btn">Order Now</button>
+            <button disabled={!purchaseable} onClick={toggleModal} className="cta btn">Order Now</button>
             {feedback ? <p>{feedback}</p> : null}
         </div>
     )

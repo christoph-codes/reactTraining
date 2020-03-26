@@ -52,7 +52,7 @@ export default function BurgerIngredient(props) {
       break;
       case "pickles":
       ingredient = (
-        <div className="Pickles ingredient animated bounce slideInDown slideOutUp faster">
+        <div className="Pickles ingredient animated slideInDown faster">
           <img src={burgerAssets.pickles} alt="" />
         </div>
       );

@@ -9,7 +9,7 @@
   }
   .page-content {
     padding: 0 35px;
-    margin: 0 auto;
+    margin: 0 auto 200px;
   }
   p {
     line-height: 150%;
@@ -18,15 +18,47 @@
     letter-spacing: 1px;
   }
   .btn {
-    padding: 10px 30px;
-    margin-top: 10px;
-    display: inline-block;
-  }
-  .btn.prime {
+    max-width: 300px;
+    width: 100%;
+    padding: 20px 0;
+    margin: 10px auto;
+    display: block;
+    border: none;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    &.prime {
       background: #555;
       color: white;
       &:hover {
         background: #333;
       }
+    }
+    &.cta {
+      background: #2AFD94;
+      color: white;
+      &:hover {
+        background: #1dbb6c;
+      }
+    }
+    &.link {
+      background: none;
+      color: #555;
+      clear: both;
+      &:hover {
+        color: #333;
+      }
+    }
+    &:disabled,&[disabled] {
+      background: #eee;
+      color: #ccc;
+      cursor: auto;
+      &:hover {
+        background: #eee;
+        color: #ccc;
+      }
   }
+}
 }
