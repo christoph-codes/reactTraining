@@ -84,12 +84,16 @@ export default function BurgerBuilder() {
     for (let key in disabledInfo) {
         disabledInfo[key] = disabledInfo[key] <= 0
     }
+    const continueToCheckout = () => {
+        //Temporary Alert to confirm the checkout button works TODO:Remove!
+        alert("Heading to Checkout!");
+    }
 
     return (
         <div className="BurgerBuilder">
             {modalStatus &&
             <Modal close={toggleModal}>
-                <OrderSummary close={toggleModal} price={totalPrice.toFixed(2)} ingredients={ingredients}/>
+                <OrderSummary close={toggleModal} continue={continueToCheckout} price={totalPrice.toFixed(2)} ingredients={ingredients}/>
             </Modal>
             }
             

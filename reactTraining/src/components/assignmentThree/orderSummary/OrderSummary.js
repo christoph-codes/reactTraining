@@ -18,7 +18,7 @@ export default function OrderSummary(props) {
       <p>Here is your burger with the following ingredients</p>
       <ul>{ingredientSummary}</ul>
       <h2><sup>$</sup>{props.price}</h2>
-      <button className="btn cta">Continue to Checkout?</button>
+      <button className="btn cta" onClick={props.continue}>Continue to Checkout?</button>
       <button className="btn link" onClick={props.close}>Cancel</button>
     </div>
   );
