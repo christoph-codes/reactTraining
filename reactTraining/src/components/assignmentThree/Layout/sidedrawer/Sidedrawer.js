@@ -13,7 +13,7 @@ export default function Sidedrawer(props) {
                 <Logo />
                 <BurgerNavItems />
             </div>
-            { props.open ? <ClearBackDrop onClick={props.close}/> : null }
+            { props.open ? <ClearBackDrop/> : null }
         </Fragment>
     );
 }
