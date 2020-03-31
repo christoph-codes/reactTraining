@@ -8,6 +8,7 @@ import Home from "../home/Home";
 import AssignmentOne from "../assignmentOne/AssignmentOne";
 import AssignmentTwo from "../assignmentTwo/AssignmentTwo";
 import AssignmentThree from "../assignmentThree/AssignmentThree";
+import AssignmentFour from "../assignmentFour/AssignmentFour";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route exact path="/assignment1" component={AssignmentOne} />
           <Route exact path="/assignment2" component={AssignmentTwo} />
           <Route exact path="/assignment3" component={AssignmentThree} />
+          <Route exact path="/assignment4" component={AssignmentFour} />
         </Switch>
         </div>
       </div>
