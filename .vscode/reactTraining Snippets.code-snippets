@@ -30,6 +30,13 @@
 			"}"
 		],
 		"description": "Creates new React File"
+	},
+	"New State Item": {
+		"prefix": "state",
+		"body": [
+			"const [$1,set$1] = useState($2);"
+		],
+		"description": "Creates new state item"
 	}
 
 }

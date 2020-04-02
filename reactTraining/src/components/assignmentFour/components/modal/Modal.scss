@@ -1,0 +1,11 @@
+.Modal {
+    button {
+        display: block;
+        margin: 20px auto 0;
+        background: lightcoral;
+        color: white;
+        &:hover {
+            background: pink;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.NewComment {
+    input, textarea {
+        width: 300px;
+        background-color: lightblue;
+        padding: 10px 5px;
+        font-size: 21px;
+        font-weight: lighter;
+        text-align: center;
+        margin: 20px auto;
+        display: block;
+        border: none;
+    }
+    .btn {
+        background: #333;
+        color: white;
+        &:hover {
+            background: #ccc;
+        }
+        &.cancel {
+            background: #eee;
+            color: #333;
+            &:hover {
+                background: #ccc;
+            }
+        }
+    }
+    p {
+        font-size: 18px;
+        margin: 5px 0;
+        &.feedback {
+            color: red;
+            font-weight: bold;
+        }
+    }
+}

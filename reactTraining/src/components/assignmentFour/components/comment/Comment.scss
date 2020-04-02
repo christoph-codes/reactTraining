@@ -15,4 +15,11 @@
     &:nth-child(n+5) {
         margin-top: 70px;
     }
+    button {
+        background: #2AFD94;
+        color: white;
+        &:hover {
+            background: #1dbb6c;
+        }
+    }
 }
