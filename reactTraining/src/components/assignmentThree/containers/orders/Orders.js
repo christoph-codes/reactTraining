@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './Orders.scss';
-import Order from '../../order/Order';
 import db from '../../firebase/firebaseConfig';
 
 export default function Orders(props) {
-    const [orders,setOrders] = useState([]);
+    const [orders,setOrders] = useState(null);
 
     const getOrders = () => {
         db.collection('orders').onSnapshot(snapshot => {
-            return snapshot.docs.map(doc => {
+            // console.log(snapshot.docs.data)
+
+            snapshot.docs.forEach(doc => {
                 let order = doc.data();
                 order.id = doc.id;
                 setOrders(order);
@@ -18,16 +19,10 @@ export default function Orders(props) {
     useEffect(() => {
         getOrders();
     }, [orders]);
-
-    const orderList = () => {
-        orders.map(order => {
-            return <Order data={order} key={order.id} />
-        })
-    }
+    
 
     return (
         <div className='Orders'>
-            {orderList}
         </div>
     )
 }

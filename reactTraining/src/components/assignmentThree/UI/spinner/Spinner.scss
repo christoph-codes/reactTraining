@@ -22,7 +22,7 @@
       .loader:before {
         width: 50%;
         height: 50%;
-        background: #929292;
+        background: white;
         border-radius: 100% 0 0 0;
         position: absolute;
         top: 0;
@@ -30,7 +30,7 @@
         content: '';
       }
       .loader:after {
-        background: #929292;
+        background: white;
         width: 75%;
         height: 75%;
         border-radius: 50%;

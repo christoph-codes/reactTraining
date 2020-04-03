@@ -9,6 +9,7 @@ import OrderSummary from '../../orderSummary/OrderSummary';
 import db from '../../firebase/firebaseConfig';
 import Spinner from '../../UI/spinner/Spinner';
 
+
 const INGREDIENT_PRICES = {
     lettuce: 0.1,
     cheese: 0.5,
@@ -18,7 +19,7 @@ const INGREDIENT_PRICES = {
     meat: 5,
 }
 
-export default function BurgerBuilder() {
+export default function BurgerBuilder(props) {
     const [ingredients, setIngredients] = useState({
             lettuce: 0,
             onions: 0,
@@ -32,6 +33,8 @@ export default function BurgerBuilder() {
     const [purchaseable, setPurchaseable] = useState(false);
     const [modalStatus, setModalStatus] = useState(false);
     const [loading,setLoading] = useState(false);
+    const [dbError,setDbError] = useState(null);
+
 
     const toggleModal = () => {
         setModalStatus(!modalStatus);
@@ -107,8 +110,9 @@ export default function BurgerBuilder() {
             console.log(response);
         })
         .catch(err => {
-            setLoading(false);
             console.log(err);
+            setDbError(err);
+            setLoading(false);
         })
     }
 
@@ -122,6 +126,9 @@ export default function BurgerBuilder() {
             {modalStatus &&
             <Modal close={toggleModal}>
                 {orderSummary }
+                {dbError &&
+                    <p>{dbError}</p>
+                }
             </Modal>
             }
             
