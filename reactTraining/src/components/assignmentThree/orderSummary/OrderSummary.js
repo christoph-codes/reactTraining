@@ -6,7 +6,7 @@ export default function OrderSummary(props) {
   const ingredientSummary = Object.keys(props.ingredients).map(igKey => {
       // For each key return a list item of the key and its value.
     return (
-      <li key={igKey} class="ingredient-list">
+      <li key={igKey} className="ingredient-list">
         <span>{igKey}</span>: {props.ingredients[igKey]}
       </li>
     );

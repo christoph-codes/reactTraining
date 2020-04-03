@@ -37,6 +37,13 @@
 			"const [$1,set$1] = useState($2);"
 		],
 		"description": "Creates new state item"
+	},
+	"Console Log": {
+		"prefix": "log",
+		"body": [
+			"console.log($1)"
+		],
+		"description": "Logs data to the console"
 	}
 
 }

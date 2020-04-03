@@ -6,6 +6,9 @@ import Modal from '../../UI/modal/Modal';
 import Burger from '../../burger/Burger';
 import OrderSummary from '../../orderSummary/OrderSummary';
 
+import db from '../../firebase/firebaseConfig';
+import Spinner from '../../UI/spinner/Spinner';
+
 const INGREDIENT_PRICES = {
     lettuce: 0.1,
     cheese: 0.5,
@@ -28,6 +31,7 @@ export default function BurgerBuilder() {
     const [feedback, setFeedback] = useState('');
     const [purchaseable, setPurchaseable] = useState(false);
     const [modalStatus, setModalStatus] = useState(false);
+    const [loading,setLoading] = useState(false);
 
     const toggleModal = () => {
         setModalStatus(!modalStatus);
@@ -85,15 +89,39 @@ export default function BurgerBuilder() {
         disabledInfo[key] = disabledInfo[key] <= 0
     }
     const continueToCheckout = () => {
+        setLoading(true);
         //Temporary Alert to confirm the checkout button works TODO:Remove!
-        alert("Heading to Checkout!");
+        // alert("Heading to Checkout!");
+        db.collection('orders').add({
+            ingredients: ingredients,
+            price: totalPrice,
+            customer: {
+                name: 'Christopher Jones',
+                email: 'c@c.com'
+            },
+            deliveryMethod: 'rush'
+        })
+        .then(response => {
+            setLoading(false);
+            toggleModal();
+            console.log(response);
+        })
+        .catch(err => {
+            setLoading(false);
+            console.log(err);
+        })
     }
+
+    let orderSummary = <OrderSummary close={toggleModal} continue={continueToCheckout} price={totalPrice.toFixed(2)} ingredients={ingredients}/>;
+    if(loading) {
+        return orderSummary = <Spinner/>;
+    } else
 
     return (
         <div className="BurgerBuilder">
             {modalStatus &&
             <Modal close={toggleModal}>
-                <OrderSummary close={toggleModal} continue={continueToCheckout} price={totalPrice.toFixed(2)} ingredients={ingredients}/>
+                {orderSummary }
             </Modal>
             }
             
