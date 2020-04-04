@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import './BurgerBuilder.scss';
 import BuildControls from '../../buildControls/BuildControls';
 import Modal from '../../UI/modal/Modal';
@@ -20,20 +20,28 @@ const INGREDIENT_PRICES = {
 }
 
 export default function BurgerBuilder(props) {
-    const [ingredients, setIngredients] = useState({
-            lettuce: 0,
-            onions: 0,
-            pickles: 0,
-            tomatos: 0,
-            cheese: 0,
-            meat: 0,
-    });
+    // State
+    const [ingredients, setIngredients] = useState(null);
     const [totalPrice, setTotalPrice] = useState(2);
     const [feedback, setFeedback] = useState('');
     const [purchaseable, setPurchaseable] = useState(false);
     const [modalStatus, setModalStatus] = useState(false);
     const [loading,setLoading] = useState(false);
     const [dbError,setDbError] = useState(null);
+
+    const getIngredients = () => {
+        console.log('...Getting Prices');
+        db.collection('counts').doc('ingredients').get()
+        .then(docs => {
+            let ingredients = docs.data();
+            // console.log(ingredients);
+            setIngredients(ingredients);
+        })
+    }
+
+    useEffect(() => {
+        getIngredients();
+    }, []);
 
 
     const toggleModal = () => {
@@ -116,10 +124,30 @@ export default function BurgerBuilder(props) {
         })
     }
 
-    let orderSummary = <OrderSummary close={toggleModal} continue={continueToCheckout} price={totalPrice.toFixed(2)} ingredients={ingredients}/>;
+    let orderSummary = null;
+    let burger = <Spinner/>
+
+    if( ingredients) {
+        burger = (
+            <Fragment>
+                <Burger ingredients={ingredients}/>
+                <h2 className="burger-price">Total Price: <sup>$</sup>{totalPrice.toFixed(2)}</h2>
+                <BuildControls 
+                    ingredientAdded={addIngredient} 
+                    ingredientRemoved={removeIngredient} 
+                    disabled={disabledInfo}
+                />
+            </Fragment>
+        );
+        orderSummary = <OrderSummary 
+        close={toggleModal} 
+        continue={continueToCheckout} 
+        price={totalPrice.toFixed(2)} 
+        ingredients={ingredients} />;
+    }
     if(loading) {
         return orderSummary = <Spinner/>;
-    } else
+    }
 
     return (
         <div className="BurgerBuilder">
@@ -131,14 +159,7 @@ export default function BurgerBuilder(props) {
                 }
             </Modal>
             }
-            
-            <Burger ingredients={ingredients}/>
-            <h2 className="burger-price">Total Price: <sup>$</sup>{totalPrice.toFixed(2)}</h2>
-            <BuildControls 
-                ingredientAdded={addIngredient} 
-                ingredientRemoved={removeIngredient} 
-                disabled={disabledInfo}
-            />
+            {burger}
             <button disabled={!purchaseable} onClick={toggleModal} className="cta btn">Order Now</button>
             {feedback ? <p>{feedback}</p> : null}
         </div>

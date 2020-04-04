@@ -28,7 +28,7 @@ export default function Comments(props) {
         // handle error
         console.log(error);
       });
-  }, [comments, selectedCommentId]);
+  }, []);
 
   const sendComment = id => {
     setSelectedCommentId(id);

@@ -9,7 +9,7 @@
   }
   .page-content {
     padding: 0 35px;
-    margin: 0 auto 200px;
+    margin: 0 auto;
   }
   p {
     line-height: 150%;
@@ -37,10 +37,10 @@
       }
     }
     &.cta {
-      background: #2AFD94;
+      background: lightgreen;
       color: white;
       &:hover {
-        background: #1dbb6c;
+        background: mediumseagreen;
       }
     }
     &.link {
