@@ -34,6 +34,8 @@ export default function Checkout(props) {
 
         // console.log(orderData);
 
+        // TODO: Add timestamp to orderData
+        
         // Add order data to the database
         db.collection('orders').add({
             ...orderData,
