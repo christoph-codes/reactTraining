@@ -1,0 +1,25 @@
+.ThankYou {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #555;
+
+    hr {
+        border: solid 1px #eee;
+    }
+    ul {
+        padding: 0;
+        list-style: none;
+
+    }
+    li.ingredient-list {
+        padding: 10px 0;
+        border-top: 1px solid #eee;
+        &:last-child {
+            border-bottom: 1px solid #eee;
+        }
+    }
+    .total-price {
+        color: lightgreen;
+        font-size: 32px;
+    }
+}

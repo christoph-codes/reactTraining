@@ -21,8 +21,8 @@ export default function BurgerNavItems(props) {
     ];
 
     const navitems = (
-        navroutes.map(route => {
-            return <li className="BurgerNavItem"><Link onClick={props.clicked} to={route.path}>{route.name}</Link></li>
+        navroutes.map((route, index) => {
+            return <li key={index} className="BurgerNavItem"><Link onClick={props.clicked} to={route.path}>{route.name}</Link></li>
         })
     )
 

@@ -7,6 +7,7 @@ import Checkout from './containers/checkout/Checkout';
 import Orders from './containers/orders/Orders';
 import Layout from './Layout/Layout';
 import FourOhFour from '../fourOhFour/FourOhFour';
+import ThankYou from './containers/thankYou/ThankYou';
 
 export default function AssignmentThree(props) {
     return (
@@ -17,6 +18,7 @@ export default function AssignmentThree(props) {
                         <Route exact path='/assignment3/burger-builder' component={BurgerBuilder} />
                         <Route exact path='/assignment3/orders' component={Orders} />
                         <Route exact path='/assignment3/checkout' component={Checkout} />
+                        <Route exact path='/assignment3/thank-you' component={ThankYou} />
                         <Redirect to='/assignment3/burger-builder' />
                         <Route component={FourOhFour} />
                     </Switch>

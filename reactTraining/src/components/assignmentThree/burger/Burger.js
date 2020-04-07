@@ -16,7 +16,7 @@ export default function Burger(props) {
 
     // console.log(transformedIngredients.length);
 
-    if (transformedIngredients.length <= 2) {
+    if (transformedIngredients.length === 0) {
         emptyIngredientMessage = "What would you like on your burger today?"
     }
     

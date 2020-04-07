@@ -10,8 +10,6 @@ export default function CheckoutSummary(props) {
             <div className="burger-container">
                 <Burger ingredients={props.ingredients}/>
             </div>
-            <button onClick={props.checkoutConfirmed} className="btn cta">Purchase</button>
-            <button onClick={props.checkoutCancelled} className="btn cancel">Cancel</button>
         </div>
     );
 }

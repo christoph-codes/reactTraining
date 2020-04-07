@@ -122,7 +122,12 @@ export default function BurgerBuilder(props) {
         //     setDbError(err);
         //     setLoading(false);
         // })
-        props.history.push('/assignment3/checkout', ingredients);
+        let orderData = {
+            ingredients: {...ingredients},
+            totalPrice: totalPrice
+        }
+        // console.log(orderData);
+        props.history.push('/assignment3/checkout', orderData);
     }
 
     let orderSummary = null;
