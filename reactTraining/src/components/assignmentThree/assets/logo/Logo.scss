@@ -1,5 +1,16 @@
 .Logo {
     img {
         height: 50px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    h1 {
+        display: inline-block;
+        margin: 0;
+        vertical-align: middle;
+        padding: 0 20px;
+        font-size: 20px;
+        text-transform: uppercase;
+        color: #777;
     }
 }

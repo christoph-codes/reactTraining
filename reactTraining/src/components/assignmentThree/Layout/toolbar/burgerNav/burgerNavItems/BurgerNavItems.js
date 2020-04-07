@@ -1,15 +1,35 @@
 import React from 'react';
-import {NavLink, useRouteMatch} from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import './BurgerNavItems.scss'
 
 export default function BurgerNavItems(props) {
     let match = useRouteMatch();
+
+    const navroutes = [
+        {
+            path: `${match.url}/burger-builder`,
+            name: 'Burger Builder',
+        },
+        {
+            path: `${match.url}/orders`,
+            name: 'Orders',
+        },
+        {
+            path: `${match.url}/checkout`,
+            name: 'Checkout',
+        }
+    ];
+
+    const navitems = (
+        navroutes.map(route => {
+            return <li className="BurgerNavItem"><Link onClick={props.clicked} to={route.path}>{route.name}</Link></li>
+        })
+    )
+
     return (
         <div className='BurgerNavItems'>
             <ul>
-                <li className="BurgerNavItem"><NavLink to={`${match.url}/burger-builder`}>Burger Builder</NavLink></li>
-                <li className="BurgerNavItem"><NavLink to="assignment3/orders">Orders</NavLink></li>
-                <li className="BurgerNavItem"><NavLink to="assignment3/checkout">Checkout</NavLink></li>
+                {navitems}
             </ul>
         </div>
     );

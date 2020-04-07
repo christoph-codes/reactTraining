@@ -11,7 +11,7 @@ export default function Sidedrawer(props) {
             <div className={`Sidedrawer ${props.open ? 'open' : ''}`}>
                 <button className="close" onClick={props.close}><img src={CloseIcon} alt=""/></button>
                 <Logo />
-                <BurgerNavItems />
+                <BurgerNavItems clicked={props.close}/>
             </div>
             { props.open ? <ClearBackDrop/> : null }
         </Fragment>

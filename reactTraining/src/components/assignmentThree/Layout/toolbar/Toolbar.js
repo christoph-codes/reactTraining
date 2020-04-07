@@ -13,7 +13,7 @@ export default function Toolbar(props) {
     return (
         <div className='Toolbar'>
             <header>
-            <Logo />
+                <Logo />
                 <button onClick={toggleSidedrawer} className="mobile-nav"><img src={HamburgerIcon} alt="" /></button>
                 <Sidedrawer open={sidedrawerStatus} clicked={toggleSidedrawer} close={toggleSidedrawer} />
             </header>

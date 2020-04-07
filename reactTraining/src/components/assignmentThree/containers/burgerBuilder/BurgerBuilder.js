@@ -100,28 +100,29 @@ export default function BurgerBuilder(props) {
         disabledInfo[key] = disabledInfo[key] <= 0
     }
     const continueToCheckout = () => {
-        setLoading(true);
-        //Temporary Alert to confirm the checkout button works TODO:Remove!
-        // alert("Heading to Checkout!");
-        db.collection('orders').add({
-            ingredients: ingredients,
-            price: totalPrice,
-            customer: {
-                name: 'Christopher Jones',
-                email: 'c@c.com'
-            },
-            deliveryMethod: 'rush'
-        })
-        .then(response => {
-            setLoading(false);
-            toggleModal();
-            console.log(response);
-        })
-        .catch(err => {
-            console.log(err);
-            setDbError(err);
-            setLoading(false);
-        })
+        // setLoading(true);
+        // //Temporary Alert to confirm the checkout button works TODO:Remove!
+        // // alert("Heading to Checkout!");
+        // db.collection('orders').add({
+        //     ingredients: ingredients,
+        //     price: totalPrice,
+        //     customer: {
+        //         name: 'Christopher Jones',
+        //         email: 'c@c.com'
+        //     },
+        //     deliveryMethod: 'rush'
+        // })
+        // .then(response => {
+        //     setLoading(false);
+        //     toggleModal();
+        //     console.log(response);
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        //     setDbError(err);
+        //     setLoading(false);
+        // })
+        props.history.push('/assignment3/checkout', ingredients);
     }
 
     let orderSummary = null;

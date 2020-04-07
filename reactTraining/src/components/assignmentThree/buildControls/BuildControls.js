@@ -13,17 +13,23 @@ const controls = [
 ]
 
 export default function BuildControls(props) {
+    const controller = (
+        controls.map(ctl => {
+            return (
+                <BuildControl 
+                    key={ctl.label} 
+                    label={ctl.label} 
+                    ingredientAdded={() => props.ingredientAdded(ctl.type)}
+                    ingredientRemoved={() => props.ingredientRemoved(ctl.type)}
+                    disabled={props.disabled[ctl.type]}
+                />
+            )
+        })
+    );
+
     return (
         <div className='BuildControls'>
-            {controls.map((ctl) => (
-                <BuildControl 
-                key={ctl.label} 
-                label={ctl.label} 
-                ingredientAdded={() => props.ingredientAdded(ctl.type)}
-                ingredientRemoved={() => props.ingredientRemoved(ctl.type)}
-                disabled={props.disabled[ctl.type]}
-                />
-            ))}
+            {controller}
         </div>
     )
 }

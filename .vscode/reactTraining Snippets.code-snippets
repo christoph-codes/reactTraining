@@ -44,6 +44,15 @@
 			"console.log($1)"
 		],
 		"description": "Logs data to the console"
+	},
+	"New Function": {
+		"prefix": "func",
+		"body": [
+			"const ${1:function_name} = (${2:args}) => {",
+			"\t$3",
+			"}"
+		],
+		"description": "Creates a new ES6 function"
 	}
 
 }

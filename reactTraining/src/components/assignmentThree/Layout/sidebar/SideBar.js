@@ -7,7 +7,6 @@ export default function Sidebar(props) {
         <div className='Sidebar'>
             
             <h3>Build a Burger</h3>
-            <BuildControls/>
         </div>
     );
 }
