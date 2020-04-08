@@ -1,0 +1,48 @@
+.Orders {
+    color: #777;
+    .order-data-table {
+        padding: 0;
+        list-style: none;
+        display: inline-block;
+        width: 100%;
+        tr {
+            width: 100%;
+            display: flex;
+            td {
+                box-sizing: border-box;
+                font-size: 14px;
+                padding: 5px 0;
+                display: flex;
+                text-align: left;
+                width: auto;
+                &.order-date {
+                    width: 10%;
+                }
+                &.order-id {
+                    width: 20%;
+                }
+                &.order-name {
+                    width: 15%;
+                }
+                &.order-email {
+                    width: 20%;
+                }
+                &.order-address {
+                    width: 15%;
+                }
+                &.order-zip {
+                    width: 10%;
+                }
+                &.order-price {
+                    width: 10%;
+                }
+                &.order-delivery {
+                    width: 5%;
+                }
+                &.strong {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

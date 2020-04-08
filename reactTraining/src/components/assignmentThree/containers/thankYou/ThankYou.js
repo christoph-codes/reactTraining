@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './ThankYou.scss'
 
 export default function ThankYou(props) {
@@ -12,6 +12,10 @@ export default function ThankYou(props) {
         </li>
       );
     });
+
+    useEffect(() => {
+      props.location.state = []
+    })
 
     return (
         <div className='ThankYou'>

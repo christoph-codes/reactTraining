@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import './Checkout.scss'
 import CheckoutSummary from '../../checkoutSummary/CheckoutSummary';
 import ContactData from '../../contactData/ContactData';
@@ -16,9 +17,26 @@ export default function Checkout(props) {
     // });
     // const [ingredients,setIngredients] = useState(props.location.state.ingredients);
     // const [totalPrice, setTotalPrice] = useState(props.location.state.totalPrice);
-    const ingredients = props.location.state.ingredients;
-    const totalPrice = props.location.state.totalPrice;
+    let ingredients = null;
+    let totalPrice = null;
+    if (props.location.state) {
+        ingredients = props.location.state.ingredients;
+        totalPrice = props.location.state.totalPrice;
+    }
+
     const [loading,setLoading] = useState(false);
+    const [todaysDate,setTodaysDate] = useState(null);
+
+    // TODO: Add timestamp to orderData
+    const getTodaysDate = () => {
+        const date = new Date();
+        console.log(date);
+        setTodaysDate(date);
+    }
+
+    useEffect(() => {
+        getTodaysDate();
+    }, [])
 
     const handleCheckoutData = (value) => {
         setLoading(true);
@@ -33,13 +51,13 @@ export default function Checkout(props) {
         }
 
         // console.log(orderData);
-
-        // TODO: Add timestamp to orderData
+        
         
         // Add order data to the database
         db.collection('orders').add({
             ...orderData,
             deliveryMethod: 'rush',
+            dateAdded: todaysDate
         })
         .then(() => {
             console.log('Confirmed Checkout');
@@ -66,7 +84,7 @@ export default function Checkout(props) {
                     {
                 ingredients ? 
                     <CheckoutSummary ingredients={ingredients} /> :
-                    null
+                    <Redirect to="/assignment3/burger-builder" />
                 }
                 </div>
             </div>
