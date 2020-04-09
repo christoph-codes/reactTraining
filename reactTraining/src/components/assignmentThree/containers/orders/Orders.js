@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './Orders.scss';
 import db from '../../firebase/firebaseConfig';
 import Order from '../../order/Order';
+import Spinner from '../../UI/spinner/Spinner';
 
 export default function Orders(props) {
     const [orders,setOrders] = useState([]);
+    const [loading,setLoading] = useState(true);
 
     const getOrders = () => {
         db.collection('orders').get().then(snapshot => {
@@ -12,6 +14,7 @@ export default function Orders(props) {
                 let order = doc.data();
                 order.id = doc.id;
                 setOrders(orders => orders.concat(order));
+                setLoading(false);
                 // console.log(doc.data());
             })
         })
@@ -44,7 +47,7 @@ let orderList = (
                         <td className="order-delivery strong">Delivery Method</td>
                     </tr>
                 </li>
-                {orderList}
+                {loading ? <Spinner /> : orderList}
             </ul>
         </div>
     )
