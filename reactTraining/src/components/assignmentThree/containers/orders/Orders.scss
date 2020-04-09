@@ -5,8 +5,10 @@
         list-style: none;
         display: inline-block;
         width: 100%;
-        tr {
+        table {
             width: 100%;
+        }
+        tr {
             display: flex;
             td {
                 box-sizing: border-box;
@@ -45,4 +47,29 @@
             }
         }
     }
+    .order-details {
+        text-align: left;
+        span {
+            float: right;
+        }
+        li {
+            padding: 10px 0;
+        }
+        .Logo {
+            display: inline-block;
+        }
+    }
+}
+
+@media print {
+    .no-print { 
+        display: none; 
+    }
+}
+
+@media print
+{
+body *, .order-details button { visibility: hidden; }
+.order-details *, .Modal * { visibility: visible; }
+.Modal { width: 90%;  }
 }
