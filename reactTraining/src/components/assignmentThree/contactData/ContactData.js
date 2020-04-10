@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./ContactData.scss";
+import TextInput from "../UI/inputs/textInput/TextInput";
+import EmailInput from '../UI/inputs/emailInput/EmailInput';
 
 export default function ContactData(props) {
   const [contactName, setContactName] = useState("");
@@ -52,18 +54,20 @@ export default function ContactData(props) {
         First we need to get your order information so we know where to ship
         your burger!
       </p>
-      <input
+      <TextInput label="Your Name" name="name" onChange={e => setContactName(e.target.value)} />
+      <EmailInput label="chris@imawesome.com" name="email" onChange={e => setContactEmail(e.target.value)} />
+      {/* <input
         type="text"
         name="name"
         placeholder="Your Name"
         onChange={e => setContactName(e.target.value)}
-      />
-      <input
+      /> */}
+      {/* <input
         type="email"
         name="email"
         placeholder="Your Email"
         onChange={e => setContactEmail(e.target.value)}
-      />
+      /> */}
       <input
         type="text"
         name="street_address"

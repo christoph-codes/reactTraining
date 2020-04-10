@@ -1,0 +1,16 @@
+.TextInput {
+    &.invalid {
+        border: red solid 1px;
+    }
+    label {
+        text-align: left;
+        span {
+            float: right;
+        }
+    }
+    input {
+        box-sizing: border-box;
+        width: 100%;
+        display: block;
+    }
+}
