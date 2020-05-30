@@ -11,6 +11,7 @@ export default function AppNavigation() {
                 <li><NavLink exact to="/assignment2">Assignment #2</NavLink></li>
                 <li><NavLink exact to="/assignment3">Assignment #3</NavLink></li>
                 <li><NavLink exact to="/assignment4">Assignment #4</NavLink></li>
+                <li><NavLink exact to="/assignment5">Assignment #5</NavLink></li>
             </ul>
         </div>
     )

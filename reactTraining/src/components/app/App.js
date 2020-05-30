@@ -11,6 +11,7 @@ import AssignmentOne from "../assignmentOne/AssignmentOne";
 import AssignmentTwo from "../assignmentTwo/AssignmentTwo";
 import AssignmentThree from "../assignmentThree/AssignmentThree";
 import AssignmentFour from "../assignmentFour/AssignmentFour";
+import AssignmentFive from "../assignmentFive/AssignmentFive";
 
 export default function App(props) {
   return (
@@ -24,6 +25,7 @@ export default function App(props) {
             <Route exact path="/assignment2" component={AssignmentTwo} />
             <Route path="/assignment3" component={AssignmentThree} />
             <Route exact path="/assignment4" component={AssignmentFour} />
+            <Route exact path="/assignment5" component={AssignmentFive} />
             <Route exact path="/" component={Home} />
             <Route component={FourOhFour} />
           </Switch>
