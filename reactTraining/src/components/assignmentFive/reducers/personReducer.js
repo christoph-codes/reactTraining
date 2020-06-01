@@ -1,6 +1,5 @@
-const initialState = {persons: []};
 
-function reducer(state, action) {
+export const reducer = (state, action) => {
     switch(action.type) {
         case 'ADD_PERSON':
             const newPerson = {
@@ -10,7 +9,9 @@ function reducer(state, action) {
             };
             return {persons: [...state.persons, newPerson]};
         case 'DELETE_PERSON':
-            let prev = [...state.persons]
-            return { persons: [prev, prev.filter(person => person.id !== action.id)]};
+            // console.log(action.id)
+            return { persons: [...state.persons.filter(person => person.id !== action.id)]};
+        default:
+            break;
     }
 }

@@ -26,8 +26,6 @@ export default function BurgerBuilder(props) {
     const [feedback, setFeedback] = useState('');
     const [purchaseable, setPurchaseable] = useState(false);
     const [modalStatus, setModalStatus] = useState(false);
-    const [loading,setLoading] = useState(false);
-    const [dbError,setDbError] = useState(null);
 
     const getIngredients = () => {
         console.log('...Getting Prices');
@@ -100,28 +98,7 @@ export default function BurgerBuilder(props) {
         disabledInfo[key] = disabledInfo[key] <= 0
     }
     const continueToCheckout = () => {
-        // setLoading(true);
-        // //Temporary Alert to confirm the checkout button works TODO:Remove!
-        // // alert("Heading to Checkout!");
-        // db.collection('orders').add({
-        //     ingredients: ingredients,
-        //     price: totalPrice,
-        //     customer: {
-        //         name: 'Christopher Jones',
-        //         email: 'c@c.com'
-        //     },
-        //     deliveryMethod: 'rush'
-        // })
-        // .then(response => {
-        //     setLoading(false);
-        //     toggleModal();
-        //     console.log(response);
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        //     setDbError(err);
-        //     setLoading(false);
-        // })
+
         let orderData = {
             ingredients: {...ingredients},
             totalPrice: totalPrice
@@ -151,18 +128,12 @@ export default function BurgerBuilder(props) {
         price={totalPrice.toFixed(2)} 
         ingredients={ingredients} />;
     }
-    if(loading) {
-        return orderSummary = <Spinner/>;
-    }
 
     return (
         <div className="BurgerBuilder">
             {modalStatus &&
             <Modal close={toggleModal}>
                 {orderSummary }
-                {dbError &&
-                    <p>{dbError}</p>
-                }
             </Modal>
             }
             {burger}

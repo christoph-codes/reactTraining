@@ -24,7 +24,6 @@ export default function Checkout(props) {
         totalPrice = props.location.state.totalPrice;
     }
 
-    const [loading,setLoading] = useState(false);
     const [todaysDate,setTodaysDate] = useState(null);
 
     // TODO: Add timestamp to orderData
@@ -39,7 +38,6 @@ export default function Checkout(props) {
     }, [])
 
     const handleCheckoutData = (value) => {
-        setLoading(true);
         
         // console.log(value);
 
@@ -62,7 +60,6 @@ export default function Checkout(props) {
         .then(() => {
             console.log('Confirmed Checkout');
             props.history.push('/assignment3/thank-you', orderData);
-            setLoading(false);
         })
         .catch(err => {
             console.log(err);
