@@ -8,9 +8,11 @@ import Orders from './containers/orders/Orders';
 import Layout from './Layout/Layout';
 import FourOhFour from '../fourOhFour/FourOhFour';
 import ThankYou from './containers/thankYou/ThankYou';
+import { IngProvider } from './context/ingContext';
 
 export default function AssignmentThree(props) {
     return (
+        <IngProvider>
         <div className="AssignmentThree">
             <Toolbar />
                 <Layout>
@@ -23,7 +25,7 @@ export default function AssignmentThree(props) {
                         <Route component={FourOhFour} />
                     </Switch>
                 </Layout>
-            
         </div>
+        </IngProvider>
     )
 }

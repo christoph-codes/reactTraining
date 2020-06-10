@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import './Checkout.scss'
 import CheckoutSummary from '../../checkoutSummary/CheckoutSummary';
@@ -15,14 +15,16 @@ export default function Checkout(props) {
     //     cheese: 1,
     //     meat: 1,
     // });
-    // const [ingredients,setIngredients] = useState(props.location.state.ingredients);
-    // const [totalPrice, setTotalPrice] = useState(props.location.state.totalPrice);
-    let ingredients = null;
-    let totalPrice = null;
-    if (props.location.state) {
-        ingredients = props.location.state.ingredients;
-        totalPrice = props.location.state.totalPrice;
-    }
+    const [ingredients,setIngredients] = useState(props.location.state.ingredients);
+    const [totalPrice, setTotalPrice] = useState(props.location.state.totalPrice);
+
+    // Setting the ingredients and price to variables from the router location passed from burger builder
+    // let ingredients = null;
+    // let totalPrice = null;
+    // if (props.location.state) {
+    //     ingredients = props.location.state.ingredients;
+    //     totalPrice = props.location.state.totalPrice;
+    // }
 
     const [todaysDate,setTodaysDate] = useState(null);
 

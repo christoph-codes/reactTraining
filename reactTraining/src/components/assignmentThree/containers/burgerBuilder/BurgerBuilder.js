@@ -1,4 +1,4 @@
-import React, { useState, useReducer, Fragment } from "react";
+import React, { useState, useEffect, useContext, useReducer, Fragment } from "react";
 import "./BurgerBuilder.scss";
 import BuildControls from "../../buildControls/BuildControls";
 import Modal from "../../UI/modal/Modal";
@@ -9,6 +9,7 @@ import OrderSummary from "../../orderSummary/OrderSummary";
 // import db from '../../firebase/firebaseConfig';
 import Spinner from "../../UI/spinner/Spinner";
 
+import { stuff, IngContext } from '../../context/ingContext';
 import { reducer } from "../../reducers/ingredientReducer";
 
 export default function BurgerBuilder(props) {
@@ -18,17 +19,9 @@ export default function BurgerBuilder(props) {
   const [feedback, setFeedback] = useState("");
   const [purchaseable, setPurchaseable] = useState(false);
   const [modalStatus, setModalStatus] = useState(false);
-  const [state, dispatch] = useReducer(reducer, {
-    ingredients: {
-      lettuce: 0,
-      cheese: 0,
-      onions: 0,
-      pickles: 0,
-      tomatos: 0,
-      meat: 0
-    },
-    totalPrice: 2
-  });
+
+  const {stuff} = useContext(IngContext);
+  const [state, dispatch] = useReducer(reducer, stuff);
 
   // const getIngredients = () => {
   //     console.log('...Getting Prices');
@@ -48,16 +41,19 @@ export default function BurgerBuilder(props) {
     setModalStatus(!modalStatus);
   };
 
-  const updatePurchaseable = ingredients => {
-    const sum = Object.keys(ingredients)
+  useEffect(() => {
+    // Checking ingredients to see if the burger is purchaseable
+    const sum = Object.keys(state.ingredients)
       .map(igKey => {
-        return ingredients[igKey];
+        return state.ingredients[igKey];
       })
       .reduce((sum, el) => {
         return sum + el;
       }, 0);
-    return sum >= 1;
-  };
+      // return sum >= 1;
+      // console.log(sum >= 1)
+      setPurchaseable(sum >= 1);
+  }, [state.ingredients]);
 
   // const addIngredient = type => {
   //     const oldCount = ingredients[type];
@@ -99,12 +95,20 @@ export default function BurgerBuilder(props) {
   for (let key in disabledInfo) {
     disabledInfo[key] = disabledInfo[key] <= 0;
   }
-  const continueToCheckout = () => {
+  // const continueToCheckout = () => {
+  //   let orderData = {
+  //     ingredients: { ...state.ingredients },
+  //     totalPrice: state.totalPrice
+  //   };
+  //   // console.log(orderData);
+  //   props.history.push("/assignment3/checkout", orderData);
+  // };
+   const continueToCheckout = () => {
     let orderData = {
       ingredients: { ...state.ingredients },
       totalPrice: state.totalPrice
     };
-    // console.log(orderData);
+    console.log(orderData);
     props.history.push("/assignment3/checkout", orderData);
   };
 
@@ -127,7 +131,6 @@ export default function BurgerBuilder(props) {
             dispatch({ type: "REMOVE_INGREDIENT", ingredientName: ingName })
           }
           disabled={disabledInfo}
-          purchaseable={() => {updatePurchaseable(state.ingredients)}}
         />
       </Fragment>
     );
@@ -136,7 +139,7 @@ export default function BurgerBuilder(props) {
         close={toggleModal}
         continue={continueToCheckout}
         price={totalPrice.toFixed(2)}
-        ingredients={state}
+        ingredients={state.ingredients}
       />
     );
   }
