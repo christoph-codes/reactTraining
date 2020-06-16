@@ -9,13 +9,12 @@ import OrderSummary from "../../orderSummary/OrderSummary";
 // import db from '../../firebase/firebaseConfig';
 import Spinner from "../../UI/spinner/Spinner";
 
-import { stuff, IngContext } from '../../context/ingContext';
+import { IngContext } from '../../context/ingContext';
 import { reducer } from "../../reducers/ingredientReducer";
 
 export default function BurgerBuilder(props) {
   // State
   // const [ingredients, setIngredients] = useState(null);
-  const [totalPrice, setTotalPrice] = useState(2);
   const [feedback, setFeedback] = useState("");
   const [purchaseable, setPurchaseable] = useState(false);
   const [modalStatus, setModalStatus] = useState(false);
@@ -52,6 +51,11 @@ export default function BurgerBuilder(props) {
       }, 0);
       // return sum >= 1;
       // console.log(sum >= 1)
+      if(sum < 1) {
+        setFeedback('You must add atleast 1 patty');
+      } else {
+        setFeedback('');
+      }
       setPurchaseable(sum >= 1);
   }, [state.ingredients]);
 
@@ -138,7 +142,7 @@ export default function BurgerBuilder(props) {
       <OrderSummary
         close={toggleModal}
         continue={continueToCheckout}
-        price={totalPrice.toFixed(2)}
+        price={state.totalPrice.toFixed(2)}
         ingredients={state.ingredients}
       />
     );

@@ -1,3 +1,4 @@
+// Reducers update the state
 const INGREDIENT_PRICES = {
     lettuce: 0.1,
     cheese: 0.5,
@@ -8,6 +9,7 @@ const INGREDIENT_PRICES = {
 }
 
 export const reducer = (state, action) => {
+
   switch (action.type) {
     case "ADD_INGREDIENT":
         console.log('Ingredient Added')
